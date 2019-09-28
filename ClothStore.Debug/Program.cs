@@ -16,14 +16,28 @@ namespace ClothStore.Debug
         {
             using (var dbtext = new EFDbContext())
             {
-                var product = new Product()
+                var product = new Product();
+                for (var i = 0; i < 10; i++)
+                { product = new Product()
                 {
-                    Name = "Coat",
-                    Description = "Women leather Coat",
-                    Price = 900m,
-                    Size = "XS"
+                    Name = $"Coat{i}",
+                    Description = $"Women leather Coat{i}",
+                    Price = 900m+i,
+                    Size = "XS",
+                    Category="Women"
                 };
-                dbtext.Product.Add(product);
+                   var product1 = new Product()
+                    {
+                        Name = $"Coat{i}",
+                        Description = $"Men leather Coat{i}",
+                        Price = 910m + i,
+                        Size = "L",
+                        Category = "Men"
+                    };
+                    dbtext.Product.Add(product);
+                    dbtext.Product.Add(product1);
+                }
+                
                 dbtext.SaveChanges();
                 Console.WriteLine("done");
                 Console.ReadLine();
